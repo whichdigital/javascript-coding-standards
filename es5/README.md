@@ -14,6 +14,7 @@
   1. [Functions](#functions)
   1. [Properties](#properties)
   1. [Variables](#variables)
+  1. [Constants](#constants)
   1. [Hoisting](#hoisting)
   1. [Comparison Operators & Equality](#comparison-operators--equality)
   1. [Blocks](#blocks)
@@ -367,7 +368,7 @@
     var superPower = new SuperPower();
     ```
 
-  - Use single `var` declaration for multiple variables.
+  - Use a single `var` declaration for multiple variables.
     Having one `var` declaration per variable is an unnecessary code repetition
     and it should hardly ever be a problem anyway as you always want to strive
     at simple functions with as few local variables as possible.  If you need
@@ -475,6 +476,23 @@
       return true;
     }
     ```
+
+**[⬆ back to top](#table-of-contents)**
+
+
+## Constants
+
+  - JavaScript doesn't support a notion of constants so we resort to normal
+    class variables in their absence.  So to denote a variable is meant to be
+    treated like a constant you should use the ALL_CAPS notation, e.g.:
+
+    ```
+    WHICH.MyClass.MY_CONSTANT = 'fooBar';
+    ```
+
+    Please note, it is still possible to assign a different value to this kind
+    of variables so they should only be used as read-only properties.  If you
+    need to change their values, use a standard variables notation.
 
 **[⬆ back to top](#table-of-contents)**
 
