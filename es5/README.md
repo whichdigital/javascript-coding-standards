@@ -413,26 +413,30 @@
     var i;
     ```
 
-  - Assign variables at the top of their scope. This helps avoid issues with variable declaration and assignment hoisting related issues.
+  - Assign variables right before where they are being used.  Separating method declarations from calls or references to them contributes
+    to messy code where things that are naturally related to each other are spread all over the place.
+
+    Also, declaring local variables without using them immediately may unnecessarily increase their scope.
+
+    JavaScript has a built-in hoisting mechanism that ensures variables are declared at the top of the current execution context so this is
+    not something developers should be worried about.
 
     ```javascript
     // bad
     function() {
-      test();
-      console.log('doing stuff..');
+      var name;
 
-      //..other stuff..
-
-      var name = getName();
-
-      if (name === 'test') {
+      if (!arguments.length) {
         return false;
       }
 
-      return name;
+      name = getName();
+      this.setFirstName(name);
+
+      return true;
     }
 
-    // good
+    // bad
     function() {
       var name = getName();
 
@@ -452,7 +456,7 @@
     function() {
       var name = getName();
 
-      if (!arguments.length) {
+      if ( ! arguments.length ) {
         return false;
       }
 
@@ -463,16 +467,17 @@
 
     // good
     function() {
-      var name;
+      test();
+      console.log('doing stuff..');
 
-      if (!arguments.length) {
+      //..other stuff..
+
+      var name = getName();
+      if (name === 'test') {
         return false;
       }
 
-      name = getName();
-      this.setFirstName(name);
-
-      return true;
+      return name;
     }
     ```
 
