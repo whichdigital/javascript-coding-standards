@@ -1108,7 +1108,8 @@
     2147483649 >> 0 //=> -2147483647
     ```
 
-  - Booleans:
+  - Booleans: avoid the double bang technique as it's simply confusing.
+    Call `Boolean` instead.
 
     ```javascript
     var age = 0;
@@ -1116,11 +1117,11 @@
     // bad
     var hasAge = new Boolean(age);
 
-    // good
-    var hasAge = Boolean(age);
+    // not too good
+    var hasAge = !!age;
 
     // good
-    var hasAge = !!age;
+    var hasAge = Boolean(age);
     ```
 
 **[⬆ back to top](#table-of-contents)**
