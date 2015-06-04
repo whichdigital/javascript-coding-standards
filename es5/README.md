@@ -1178,15 +1178,20 @@
     });
     ```
 
-  - Use a leading underscore `_` when naming private properties.
+  - Never use a leading underscore `_` when naming properties that are meant to
+    be used as private.  This is a form of Hungarian notation (evil!) that
+    unnecessarily pollutes the code.  JavaScript does not really support the
+    concept of variable privacy so there is no need to resort to this kind of
+    tricks to fake it.
 
     ```javascript
     // bad
     this.__firstName__ = 'Panda';
     this.firstName_ = 'Panda';
+    this._firstName = 'Panda';
 
     // good
-    this._firstName = 'Panda';
+    this.firstName = 'Panda';
     ```
 
   - When saving a reference to `this` use `_this`.
