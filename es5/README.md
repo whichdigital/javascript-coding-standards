@@ -1194,7 +1194,13 @@
     this.firstName = 'Panda';
     ```
 
-  - When saving a reference to `this` use `_this`.
+  - Avoid referencing `this` and opt for scope binding instead.  You typically
+    end up needing it when handling events in jQuery and this technique
+    encourages you to decouple event listeners from their handlers, makes the
+    code simpler and much easier to unit test.
+
+    If you really need to reference the `this` scope, never use `_this` but
+    `context` instead.
 
     ```javascript
     // bad
@@ -1213,12 +1219,18 @@
       };
     }
 
-    // good
+    // bad
     function() {
       var _this = this;
       return function() {
         console.log(_this);
       };
+    }
+
+    // good
+    _.bindAll( this, 'handleClickEvent' );
+    function() {
+      $( target ).on( 'click', this.handleClickEvent );
     }
     ```
 
